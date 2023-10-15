@@ -66,18 +66,23 @@ const Layout = ({ children }) => {
           icon: "O",
         },
         {
-          title: "Tasks",
-          url: "/supplier/tasks",
+          title: "Orders",
+          url: "/supplier/orders",
           icon: "T",
         },
         {
-          title: "People",
-          url: "/supplier/people",
+          title: "Deliveries",
+          url: "/supplier/deliveries",
           icon: "P",
         },
         {
-          title: "Sites",
-          url: "/supplier/sites",
+          title: "Products",
+          url: "/supplier/products",
+          icon: "S",
+        },
+        {
+          title: "Payments",
+          url: "/supplier/payments",
           icon: "S",
         },
       ],
@@ -117,8 +122,6 @@ const Layout = ({ children }) => {
 
     return navBarData;
   };
-
-  console.log("navBarData ", getNavBarData()[0]);
   return (
     <div className="flex flex-row">
       <div className="w-52 bg-white min-h-screen border-r-2 flex flex-col justify-between py-11 px-4">

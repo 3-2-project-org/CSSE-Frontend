@@ -1,21 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import "../Login/Login.css";
+import { resetPassword } from "../../../../api/auth";
+import { useNavigate } from "react-router";
+import { getDataFromLocalStorage } from "../../../../utils/accessLocalStorage";
 const ResetPassword = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+  const { mutate, isSuccess, data } = resetPassword();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
   const handleLogin = () => {
-    // Add your login logic here
-    console.log("Email:", email);
-    console.log("Password:", password);
+    const { email} = getDataFromLocalStorage("user");
+    mutate({ password: newPassword, confirmPassword: newPassword, email });
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/auth/login");
+    } else {
+      alert("Something went wrong");
+    }
+  }, [isSuccess, data]);
 
   return (
     <div className="login-container">
@@ -74,7 +86,7 @@ const ResetPassword = () => {
           }}
           onClick={handleLogin}
         >
-          Log In
+          Change Password
         </button>
       </div>
     </div>

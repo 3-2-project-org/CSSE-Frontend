@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getDataFromLocalStorage } from "../utils/accessLocalStorage";
 
 export const axiosInstance = axios.create({
   baseURL: "http://localhost:3007/api/v1",
@@ -8,8 +9,9 @@ export const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use((config) => {
+  const token = getDataFromLocalStorage("token");
   config.headers.Authorization = `Bearer ${
-    JSON.parse(localStorage.getItem("user"))?.token
+    token || ""
   }`;
   return config;
 });

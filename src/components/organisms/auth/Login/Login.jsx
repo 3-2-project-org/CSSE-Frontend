@@ -26,14 +26,12 @@ const Login = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      console.log("sssss ", data?.data?.data?.otherDetails)
+      setDataToLocalStorage("user", data?.data?.data?.otherDetails);
+      setDataToLocalStorage("token", data?.data?.data?.token);
       if (!data?.data?.data?.otherDetails?.is_loggedIn) {    
         navigate("/auth/reset-password");
       } else {
         if (data?.data?.data?.otherDetails?.is_active) {
-          setDataToLocalStorage("token", data?.data?.data?.token);
-          setDataToLocalStorage("user", data?.data?.data?.otherDetails);
-
           if (data?.data?.data?.otherDetails?.type === "supplier") {
             navigate("/supplier/overview");
           } else if (data?.data?.data?.otherDetails?.type === "admin") {

@@ -9,3 +9,12 @@ export const login = () => {
     },
   });
 };
+
+export const resetPassword = () => {
+  return useMutation({
+    mutationFn: async (data) => {
+      console.log("data ", data);
+      return await axiosInstance.patch("/auth/reset-password", data);
+    },
+  });
+}

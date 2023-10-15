@@ -1,12 +1,16 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Login from "./components/organisms/auth/Login/Login";
 import ResetPassword from "./components/organisms/auth/reset-password/ResetPassword";
 import AdminRoutes from "./views/admin-view";
 import ProcumentRoutes from "./views/procument-view";
 import SiteManagerRoutes from "./views/site-manager-view";
 import SupplierRoutes from "./views/supplier-view";
+import { getDataFromLocalStorage } from "./utils/accessLocalStorage";
 
 function App() {
+  const navigate = useNavigate();
+  const user = getDataFromLocalStorage("user");
+
   return (
     <div>
       <Routes>
