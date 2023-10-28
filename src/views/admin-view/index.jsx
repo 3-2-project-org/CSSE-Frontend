@@ -10,6 +10,8 @@ import AddNewUser from "./admin-forms/AddNewUser";
 import EditUser from "./admin-forms/EditUser";
 import AddSite from "./admin-forms/AddSite";
 import EditSite from "./admin-forms/EditSite";
+import EditTasks from "./admin-forms/EditTasks"
+import AddTasks from "./admin-forms/AddTasks"
 
 const index = () => {
   return (
@@ -28,6 +30,8 @@ const index = () => {
             <Route path="edit/:id" element={<EditUser />} />
             <Route path="newSite" element={<AddSite />} />
             <Route path="editSite/:id" element={<EditSite />} />
+            <Route path="newTask" element={<AddTasks />} />
+            <Route path="editTask/:id" element={<EditTasks />} />
             {/* <Route path="edit/:id" element={<InventoryForm />} />
           <Route path="release/request" element={<ReleaseInventoryMain />} />
           <Route

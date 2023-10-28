@@ -55,6 +55,8 @@ const Table = ({ response, title, dataCols, setIsOpen }) => {
                   ? "/supplier/view-order/" + params.row._id
                   : title === "Sites"
                   ? "/admin/editSite/" + params.row._id
+                  : title === "Tasks"
+                  ? "/admin/editTask/" + params.row._id
                   : "/admin/edit/" + params.row._id
               }
             >
