@@ -10,6 +10,7 @@ import Layout from "../../components/organisms/Layout";
 import SupplierForms from "./supplier-forms/SupplierForms";
 import SupplierProductEdit from "./supplier-Product-edit-forms/SupplierProductEdit";
 import SupplierViewOrder from "./supplier-view-order/SupplierViewOrder";
+import SupplierViewDelivery from "./supplier-view-delivery/SupplierViewDelivery";
 
 const index = () => {
   return (
@@ -29,6 +30,7 @@ const index = () => {
             <Route path="add-product" element={<SupplierForms />} />
             <Route path="edit-product/:id" element={<SupplierProductEdit />} />
             <Route path="view-order/:id" element={<SupplierViewOrder />} />
+            <Route path="view-delivery/:id" element={<SupplierViewDelivery />} />
             {/* <Route path="edit/:id" element={<InventoryForm />} />
           <Route path="release/request" element={<ReleaseInventoryMain />} />
           <Route

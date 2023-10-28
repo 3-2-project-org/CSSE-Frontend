@@ -52,3 +52,15 @@ export const getProductById = (id) => {
     refetchOnMount: true,
   });
 }
+
+
+export const getProductCount = () => {
+  return useQuery({
+    queryKey: ["productCount"],
+    queryFn: async () => {
+      return await axiosInstance.get(`/product/count`);
+    },
+    enabled: true,
+    refetchOnMount: true,
+  });
+}

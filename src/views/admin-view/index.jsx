@@ -6,6 +6,10 @@ import AdminSites from "./admin-add-sites/AdminSites";
 import { Route, Routes } from "react-router-dom";
 import FileNotFound from "../../components/organisms/errors/fileNotFound";
 import Layout from "../../components/organisms/Layout";
+import AddNewUser from "./admin-forms/AddNewUser";
+import EditUser from "./admin-forms/EditUser";
+import AddSite from "./admin-forms/AddSite";
+import EditSite from "./admin-forms/EditSite";
 
 const index = () => {
   return (
@@ -20,6 +24,10 @@ const index = () => {
             <Route path="tasks" element={<AdminTasks />} />
             <Route path="people" element={<AdminPeople />} />
             <Route path="sites" element={<AdminSites />} />
+            <Route path="newUser" element={<AddNewUser />} />
+            <Route path="edit/:id" element={<EditUser />} />
+            <Route path="newSite" element={<AddSite />} />
+            <Route path="editSite/:id" element={<EditSite />} />
             {/* <Route path="edit/:id" element={<InventoryForm />} />
           <Route path="release/request" element={<ReleaseInventoryMain />} />
           <Route
