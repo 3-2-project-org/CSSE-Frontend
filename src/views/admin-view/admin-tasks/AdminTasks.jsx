@@ -47,12 +47,7 @@ const AdminTasks = () => {
           taskStatus: item.taskStatus || "Not provided",
           taskPriority: item.taskPriority || "Not provided",
           taskDueDate: item.taskDueDate || "Not provided",
-          taskEndDate: item.taskEndDate || "Not provided",
-          taskStartDate: item.taskStartDate || "Not provided",
-          assignedTo: item.assignedTo.username || "Not provided",
-          // managerEmail: item.Manager.email || "Not provided",
-          // comments: item.comments || "Not provided",
-          taskSpan: item.taskSpan || "Not provided",
+          assignedTo: item.assignedTo || "Not provided",
         }
       });
 
@@ -64,7 +59,8 @@ const AdminTasks = () => {
 
   useEffect(() => {
     if (isSuccess && data) {
-      setTasks(data.data.data.data)
+      console.log(data.data.data)
+      setTasks(data.data.data)
     }
   }, [data, isSuccess])
 

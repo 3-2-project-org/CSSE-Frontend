@@ -20,9 +20,27 @@ export const resetPassword = () => {
 
 export const getAllUsers = () => {
   return useQuery({
-    queryKey: "users",
+    queryKey: "sitemanager",
     queryFn: async () => {
       return await axiosInstance.get("/auth/allusers?type=site manager");
+    },
+  });
+}
+
+export const getAllEmployees = () => {
+  return useQuery({
+    queryKey: "users",
+    queryFn: async () => {
+      return await axiosInstance.get("/auth/allusers");
+    },
+  });
+}
+
+export const getAllSuppliers = () => {
+  return useQuery({
+    queryKey: "suppliers",
+    queryFn: async () => {
+      return await axiosInstance.get("/auth/allusers?type=supplier");
     },
   });
 }

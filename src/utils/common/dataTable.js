@@ -175,37 +175,8 @@ export const taskColumns = [
     width: 130,
   },
   {
-    field: "taskStartDate",
-    headerName: "Start Date",
-    description: "This column has a value getter and is not sortable.",
-    sortable: true,
-    width: 130,
-  },
-
-  {
-    field: "taskEndDate",
-    headerName: "End Date",
-    description: "This column has a value getter and is not sortable.",
-    sortable: true,
-    width: 130,
-  },
-  {
     field: "assignedTo",
     headerName: "Assigned To",
-    description: "This column has a value getter and is not sortable.",
-    sortable: true,
-    width: 130,
-  },
-  // {
-  //   field: "comments",
-  //   headerName: "Comments",
-  //   description: "This column has a value getter and is not sortable.",
-  //   sortable: true,
-  //   width: 130,
-  // },
-  {
-    field: "taskSpan",
-    headerName: "Task Span",
     description: "This column has a value getter and is not sortable.",
     sortable: true,
     width: 130,

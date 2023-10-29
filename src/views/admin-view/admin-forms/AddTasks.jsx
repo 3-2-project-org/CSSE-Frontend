@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useFormik } from "formik";
-import { createTask} from '../../../api/task'
+import { createTask } from "../../../api/task";
 import { useNavigate } from "react-router-dom";
 
 const AddTasks = () => {
@@ -17,6 +17,7 @@ const AddTasks = () => {
     taskStartDate: "",
     taskEndDate: "",
     taskSpan: "",
+    taskStatus: "",
   };
 
   const formik = useFormik({
@@ -35,18 +36,15 @@ const AddTasks = () => {
     }
   }, [isSuccess]);
 
-
-
-
   return (
     <form onSubmit={handleSubmit}>
-      <span className="text-2xl font-bold">Add Site</span>
+      <span className="text-2xl font-bold">Add New Task</span>
       <div className="flex flex-col mt-16 w-[1000px]">
         <div className="w-full bg-white shadow-lg rounded-lg p-6 flex flex-col">
           <span className="text-xl font-semibold">Task Name</span>
           <input
             type="text"
-            name="Task Name"
+            name="taskName"
             className="border-2 border-gray-300 p-2 rounded-md mt-2"
             onChange={handleChange}
             value={values.taskName}
@@ -74,72 +72,72 @@ const AddTasks = () => {
           }
         </div>
 
+        <div className="w-full bg-white shadow-lg gap-2 rounded-lg p-6 flex flex-row mt-10">
+          <div className="flex-1 w-full flex-col flex">
+            <span className="text-xl font-semibold">Priority </span>
+            <select
+              className="border-2 border-gray-300 p-2 rounded-md mt-2"
+              name="taskPriority"
+              onSelect={(e) => {
+                formik.setFieldValue("taskPriority", e.target.value);
+              }}
+              onChange={handleChange}
+            >
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <div className="flex-1 w-full flex-col flex">
+          <span className="text-xl font-semibold">Task Status </span>
+            <select
+              className="border-2 border-gray-300 p-2 rounded-md mt-2"
+              name="taskStatus"
+              onSelect={(e) => {
+                formik.setFieldValue("taskStatus", e.target.value);
+              }}
+              onChange={handleChange}
+            >
+              <option value="todo">Todo</option>
+              <option value="inprogress">Inprogess</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
+        </div>
 
         <div className="w-full bg-white shadow-lg gap-2 rounded-lg p-6 flex flex-row mt-10">
           <div className="flex-1 w-full flex-col flex">
-          <span className="text-xl font-semibold">Priority </span>
-              <select
-                className="border-2 border-gray-300 p-2 rounded-md mt-2"
-                name="taskPriority"
-                onSelect={(e) => {
-                  formik.setFieldValue("taskPriority", e.target.value);
-                }}
-                onChange={handleChange}
-              >
-                <option value="low">
-                  Low
-                </option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-              </select>
-          </div>
-          <div className="flex-1 w-full flex-col flex">
-          <span className="text-xl font-semibold">Task Span</span>
+            <span className="text-xl font-semibold">Start Date </span>
             <input
-              type="number"
-              name="taskSpan"
+              type="date"
+              name="taskStartDate"
               className="border-2 border-gray-300 p-2 rounded-md mt-2"
               onChange={handleChange}
-              value={values.taskSpan}
+              value={values.taskStartDate}
+            />
+          </div>
+          <div className="flex-1 w-full flex-col flex">
+            <span className="text-xl font-semibold">End Date </span>
+            <input
+              type="date"
+              name="taskEndDate"
+              className="border-2 border-gray-300 p-2 rounded-md mt-2"
+              onChange={handleChange}
+              value={values.taskEndDate}
             />
           </div>
         </div>
 
-
-
-      <div className="w-full bg-white shadow-lg gap-2 rounded-lg p-6 flex flex-row mt-10">
-          <div className="flex-1 w-full flex-col flex">
-          <span className="text-xl font-semibold">Start Date </span>
-          <input
-            type="date"
-            name="taskStartDate"
-            className="border-2 border-gray-300 p-2 rounded-md mt-2"
-            onChange={handleChange}
-            value={values.taskStartDate}
-          />
-          </div>
-          <div className="flex-1 w-full flex-col flex">
-          <span className="text-xl font-semibold">End Date </span>
-          <input
-            type="date"
-            name="taskEndDate"
-            className="border-2 border-gray-300 p-2 rounded-md mt-2"
-            onChange={handleChange}
-            value={values.taskEndDate}
-          />
-          </div>
-        </div>
-        
         <div className="w-full bg-white shadow-lg gap-2 rounded-lg p-6 flex flex-row mt-10">
           <div className="flex-1 w-full flex-col flex">
-          <span className="text-xl font-semibold">Due Date </span>
-          <input
-            type="date"
-            name="taskDueDate"
-            className="border-2 border-gray-300 p-2 rounded-md mt-2"
-            onChange={handleChange}
-            value={values.taskDueDate}
-          />
+            <span className="text-xl font-semibold">Due Date </span>
+            <input
+              type="date"
+              name="taskDueDate"
+              className="border-2 border-gray-300 p-2 rounded-md mt-2"
+              onChange={handleChange}
+              value={values.taskDueDate}
+            />
           </div>
           <div className="flex-1 w-full flex-col flex">
             <span className="text-xl font-semibold">Assigned To</span>
@@ -159,7 +157,6 @@ const AddTasks = () => {
             </select>
           </div>
         </div>
-
       </div>
 
       <div className="w-full flex justify-center">
@@ -171,7 +168,7 @@ const AddTasks = () => {
         </button>
       </div>
     </form>
-  )
-}
+  );
+};
 
-export default AddTasks
+export default AddTasks;

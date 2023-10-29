@@ -26,7 +26,6 @@ export const updateSite = () => {
   });
 };
 
-
 export const getSiteById = (id) => {
   return useQuery({
     queryKey: "site",
@@ -34,4 +33,12 @@ export const getSiteById = (id) => {
       return await axiosInstance.get("/site/" + id);
     },
   });
-}
+};
+
+export const deleteSite = () => {
+  return useMutation({
+    mutationFn: async (id) => {
+      return await axiosInstance.delete("/site/" + id);
+    },
+  });
+};

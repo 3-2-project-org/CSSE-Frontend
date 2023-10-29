@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Table from '../../../utils/components/molecules/common-Table/Table'
 import ToastMessage from '../../../components/atoms/ToastMessage/ToastMessage'
-import { getAllUsers } from '../../../api/auth'
+import { getAllEmployees, getAllUsers } from '../../../api/auth'
 import { userColumns } from '../../../utils/common/dataTable'
 import { Link } from 'react-router-dom'
 
@@ -16,7 +16,7 @@ const AdminPeople = () => {
     }
   ])
 
-  const {data, isSuccess} = getAllUsers()
+  const {data, isSuccess} = getAllEmployees()
 
   useEffect(() => {
     if (isSuccess && data) {

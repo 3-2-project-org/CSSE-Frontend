@@ -3,6 +3,8 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { deleteProduct } from "../../../../api/product";
 import { deleteDelivery } from "../../../../api/delivery";
+import { deleteTask } from "../../../../api/task";
+import { deleteSite } from "../../../../api/sites";
 
 const Table = ({ response, title, dataCols, setIsOpen }) => {
   const { mutate, isSuccess, isError } = deleteProduct();
@@ -11,11 +13,27 @@ const Table = ({ response, title, dataCols, setIsOpen }) => {
     isSuccess: dekiverySuccess,
     isError: deliveryError,
   } = deleteDelivery();
+  const {
+    mutate: deleteMutate,
+    isSuccess: deleteIsSuccess,
+    isError: deleteIsError,
+  } = deleteTask();
+  const {
+    mutate: deleteSiteMutate,
+    isSuccess: deleteSiteSuccess,
+    isError: deleteSiteError,
+  } = deleteSite();
   const handleDelete = (id) => {
     if (title === "Products") {
       mutate(id);
     } else if (title === "Deliveries") {
       deliveryMutate(id);
+    } else if (title === "Orders") {
+      alert("Order cannot be deleted");
+    } else if (title === "Sites") {
+      deleteSiteMutate(id);
+    } else if (title === "Tasks") {
+      deleteMutate(id);
     }
   };
 
@@ -36,7 +54,25 @@ const Table = ({ response, title, dataCols, setIsOpen }) => {
       alert("Delivery deleted successfully");
     }
   }, [dekiverySuccess, deliveryError]);
-  
+
+  useEffect(() => {
+    if (deleteIsError) {
+      alert("Something went wrong");
+    }
+    if (deleteIsSuccess) {
+      alert("Task deleted successfully");
+    }
+  }, [deleteIsSuccess, deleteIsError]);
+
+  useEffect(() => {
+    if (deleteSiteError) {
+      alert("Something went wrong");
+    }
+    if (deleteSiteSuccess) {
+      alert("Site deleted successfully");
+    }
+  }, [deleteSiteSuccess, deleteSiteError]);
+
   const actionColumn = [
     {
       field: "action",

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import { useLocation, useNavigate } from "react-router-dom";
-import { getTaskById , updateTask } from "../../../api/task";
+import { getTaskById, updateTask } from "../../../api/task";
 
 const EditTasks = () => {
   const location = useLocation();
@@ -30,7 +30,6 @@ const EditTasks = () => {
 
   const { values, errors, handleChange, handleSubmit } = formik;
 
-
   useEffect(() => {
     if (isSuccess) {
       alert("Task updated successfully");
@@ -38,30 +37,29 @@ const EditTasks = () => {
     }
   }, [isSuccess]);
 
-
   useEffect(() => {
     if (taskData && data) {
+      console.log(data.data.data);
       formik.setFieldValue("taskName", data.data.data.taskName);
       formik.setFieldValue("taskDescription", data.data.data.taskDescription);
       formik.setFieldValue("taskPriority", data.data.data.taskPriority);
       formik.setFieldValue("taskDueDate", data.data.data.taskDueDate);
-      formik.setFieldValue("assignedTo", data.data.data.assignedTo._id      );
+      formik.setFieldValue("assignedTo", data.data.data.assignedTo._id);
       formik.setFieldValue("taskStartDate", data.data.data.taskStartDate);
       formik.setFieldValue("taskEndDate", data.data.data.taskEndDate);
-      formik.setFieldValue("taskSpan",data.data.data.taskSpan);
+      formik.setFieldValue("taskSpan", data.data.data.taskSpan);
     }
   }, [taskData, data]);
-
 
   return (
     <form onSubmit={handleSubmit}>
       <span className="text-2xl font-bold">Edit Task</span>
       <div className="flex flex-col mt-16 w-[1000px]">
         <div className="w-full bg-white shadow-lg rounded-lg p-6 flex flex-col">
-        <span className="text-xl font-semibold">Task Name</span>
+          <span className="text-xl font-semibold">Task Name</span>
           <input
             type="text"
-            name="Task Name"
+            name="taskName"
             className="border-2 border-gray-300 p-2 rounded-md mt-2"
             onChange={handleChange}
             value={values.taskName}
@@ -75,24 +73,22 @@ const EditTasks = () => {
 
         <div className="w-full bg-white shadow-lg gap-2 rounded-lg p-6 flex flex-row mt-10">
           <div className="flex-1 w-full flex-col flex">
-          <span className="text-xl font-semibold">Priority </span>
-              <select
-                className="border-2 border-gray-300 p-2 rounded-md mt-2"
-                name="taskPriority"
-                onSelect={(e) => {
-                  formik.setFieldValue("taskPriority", e.target.value);
-                }}
-                onChange={handleChange}
-              >
-                <option value="low">
-                  Low
-                </option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-              </select>
+            <span className="text-xl font-semibold">Priority </span>
+            <select
+              className="border-2 border-gray-300 p-2 rounded-md mt-2"
+              name="taskPriority"
+              onSelect={(e) => {
+                formik.setFieldValue("taskPriority", e.target.value);
+              }}
+              onChange={handleChange}
+            >
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
           </div>
           <div className="flex-1 w-full flex-col flex">
-          <span className="text-xl font-semibold">Task Span</span>
+            <span className="text-xl font-semibold">Task Span</span>
             <input
               type="number"
               name="taskSpan"
@@ -103,42 +99,39 @@ const EditTasks = () => {
           </div>
         </div>
 
-
         <div className="w-full bg-white shadow-lg gap-2 rounded-lg p-6 flex flex-row mt-10">
           <div className="flex-1 w-full flex-col flex">
-          <span className="text-xl font-semibold">Start Date </span>
-          <input
-            type="date"
-            name="taskStartDate"
-            className="border-2 border-gray-300 p-2 rounded-md mt-2"
-            onChange={handleChange}
-            value={values.taskStartDate}
-          />
+            <span className="text-xl font-semibold">Start Date </span>
+            <input
+              type="date"
+              name="taskStartDate"
+              className="border-2 border-gray-300 p-2 rounded-md mt-2"
+              onChange={handleChange}
+              value={values?.taskStartDate?.slice(0, 10)}
+            />
           </div>
           <div className="flex-1 w-full flex-col flex">
-          <span className="text-xl font-semibold">End Date </span>
-          <input
-            type="date"
-            name="taskEndDate"
-            className="border-2 border-gray-300 p-2 rounded-md mt-2"
-            onChange={handleChange}
-            value={values.taskEndDate}
-          />
+            <span className="text-xl font-semibold">End Date </span>
+            <input
+              type="date"
+              name="taskEndDate"
+              className="border-2 border-gray-300 p-2 rounded-md mt-2"
+              onChange={handleChange}
+              value={values?.taskEndDate?.slice(0, 10)}
+            />
           </div>
         </div>
 
-
-
         <div className="w-full bg-white shadow-lg gap-2 rounded-lg p-6 flex flex-row mt-10">
           <div className="flex-1 w-full flex-col flex">
-          <span className="text-xl font-semibold">Due Date </span>
-          <input
-            type="date"
-            name="taskDueDate"
-            className="border-2 border-gray-300 p-2 rounded-md mt-2"
-            onChange={handleChange}
-            value={values.taskDueDate}
-          />
+            <span className="text-xl font-semibold">Due Date </span>
+            <input
+              type="date"
+              name="taskDueDate"
+              className="border-2 border-gray-300 p-2 rounded-md mt-2"
+              onChange={handleChange}
+              value={values?.taskDueDate?.slice(0, 10)}
+            />
           </div>
           <div className="flex-1 w-full flex-col flex">
             <span className="text-xl font-semibold">Assigned To</span>
@@ -149,6 +142,8 @@ const EditTasks = () => {
                 formik.setFieldValue("assignedTo", e.target.value);
               }}
               onChange={handleChange}
+              value={values.assignedTo}
+              
             >
               <option value="6525afdf630e4a2aa363542e">
                 Tuan Fazid Manager
@@ -158,16 +153,6 @@ const EditTasks = () => {
             </select>
           </div>
         </div>
-
-
-
-
-
-
-
-
-
-
       </div>
 
       <div className="w-full flex justify-center">
@@ -179,7 +164,7 @@ const EditTasks = () => {
         </button>
       </div>
     </form>
-  )
-}
+  );
+};
 
-export default EditTasks
+export default EditTasks;
