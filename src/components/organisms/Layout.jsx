@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { Link, useNavigate } from "react-router-dom";
 import { getDataFromLocalStorage } from "../../utils/accessLocalStorage";
+import CloseIcon from "../../assets/icons/CloseIcon";
 
 const Layout = ({ children }) => {
   const navigate = useNavigate();
@@ -10,9 +11,12 @@ const Layout = ({ children }) => {
     localStorage.removeItem("user");
     navigate("/auth/login");
   };
+  const [showPopup, setShowPopup] = useState(false);
+  const user = getDataFromLocalStorage("user");
 
   const getNavBarData = () => {
     const { type } = getDataFromLocalStorage("user") || "admin";
+
     let navBarData = [];
     const navdata = {
       admin: [
@@ -122,6 +126,7 @@ const Layout = ({ children }) => {
 
     return navBarData;
   };
+  console.log(user);
   return (
     <div className="flex flex-row">
       <div className="w-52 bg-white min-h-screen border-r-2 flex flex-col justify-between py-11 px-4">
@@ -140,7 +145,12 @@ const Layout = ({ children }) => {
 
         <div className="ml-2 mt-8">
           <span className="text-md font-bold text-[#999]">Accounts</span>
-          <div className="flex items-center mt-4 cursor-pointer">
+          <div
+            className="flex items-center mt-4 cursor-pointer"
+            onClick={() => {
+              setShowPopup(true);
+            }}
+          >
             <span className="text-primary">
               <Person2OutlinedIcon />
             </span>
@@ -161,7 +171,48 @@ const Layout = ({ children }) => {
           </div>
         </div>
       </div>
-      <div className="p-8">{children}</div>
+      <div className="p-8 relative ">
+        
+          {showPopup && (
+            <div className="backdrop-blur-lg absolute right-0 left-0 z-50 h-full  bottom-0 flex justify-center items-center">
+            <div className=" backdrop-blur-lg bg-white w-[500px] shadow-2xl h-auto  p-8 ">
+              <div
+                className="w-full flex justify-end"
+                onClick={() => {
+                  setShowPopup(false);
+                }}
+              >
+                <CloseIcon />
+              </div>
+              <div>
+                <div>
+                  <span className="text-2xl font-bold">User profile</span>
+                </div>
+
+                <div className="mt-10 w-full justify-between flex">
+                  <span className="text-xl font-semibold">User id:</span>
+                  <span>{user?._id}</span>
+                </div>
+                <div className="mt-4 w-full justify-between flex">
+                  <span className="text-xl font-semibold">User name:</span>
+                  <span>{user?.username}</span>
+                </div>
+                <div className="mt-4 w-full justify-between flex">
+                  <span className="text-xl font-semibold">User email:</span>
+                  <span>{user?.email}</span>
+                </div>
+                <div className="mt-4 w-full justify-between flex">
+                  <span className="text-xl font-semibold">User type:</span>
+                  <span>{user?.type}</span>
+                </div>
+              </div>
+            </div>
+            </div>
+          )}
+      
+
+        <div>{children}</div>
+      </div>
     </div>
   );
 };
