@@ -15,8 +15,7 @@ export const resetPassword = () => {
       return await axiosInstance.patch("/auth/reset-password", data);
     },
   });
-}
-
+};
 
 export const getAllUsers = () => {
   return useQuery({
@@ -25,7 +24,7 @@ export const getAllUsers = () => {
       return await axiosInstance.get("/auth/allusers?type=site manager");
     },
   });
-}
+};
 
 export const getAllEmployees = () => {
   return useQuery({
@@ -34,7 +33,7 @@ export const getAllEmployees = () => {
       return await axiosInstance.get("/auth/allusers");
     },
   });
-}
+};
 
 export const getAllSuppliers = () => {
   return useQuery({
@@ -43,7 +42,7 @@ export const getAllSuppliers = () => {
       return await axiosInstance.get("/auth/allusers?type=supplier");
     },
   });
-}
+};
 
 export const registerUser = () => {
   return useMutation({
@@ -51,7 +50,7 @@ export const registerUser = () => {
       return await axiosInstance.post("/auth/register", data);
     },
   });
-}
+};
 
 export const updateUser = () => {
   return useMutation({
@@ -59,7 +58,7 @@ export const updateUser = () => {
       return await axiosInstance.patch("/auth/edit/" + data.id, data.values);
     },
   });
-}
+};
 
 export const getUserById = (id) => {
   return useQuery({
@@ -68,4 +67,12 @@ export const getUserById = (id) => {
       return await axiosInstance.get("/auth/user/" + id);
     },
   });
-}
+};
+
+export const deleteUser = () => {
+  return useMutation({
+    mutationFn: async (id) => {
+      return await axiosInstance.delete("/auth/delete/" + id);
+    },
+  });
+};

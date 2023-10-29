@@ -5,6 +5,7 @@ import { deleteProduct } from "../../../../api/product";
 import { deleteDelivery } from "../../../../api/delivery";
 import { deleteTask } from "../../../../api/task";
 import { deleteSite } from "../../../../api/sites";
+import { deleteUser } from "../../../../api/auth";
 
 const Table = ({ response, title, dataCols, setIsOpen }) => {
   const { mutate, isSuccess, isError } = deleteProduct();
@@ -23,6 +24,11 @@ const Table = ({ response, title, dataCols, setIsOpen }) => {
     isSuccess: deleteSiteSuccess,
     isError: deleteSiteError,
   } = deleteSite();
+
+  const {
+    mutate: deleteUserMutate,
+    isSuccess: deleteUserSuccess,
+  } = deleteUser();
   const handleDelete = (id) => {
     if (title === "Products") {
       mutate(id);
@@ -34,6 +40,8 @@ const Table = ({ response, title, dataCols, setIsOpen }) => {
       deleteSiteMutate(id);
     } else if (title === "Tasks") {
       deleteMutate(id);
+    } else if (title === "Users") {
+      deleteUserMutate(id);
     }
   };
 
@@ -72,6 +80,13 @@ const Table = ({ response, title, dataCols, setIsOpen }) => {
       alert("Site deleted successfully");
     }
   }, [deleteSiteSuccess, deleteSiteError]);
+
+  useEffect(() => {
+    if (deleteUserSuccess) {
+      alert("User deleted successfully");
+    }
+  }
+  , [deleteUserSuccess]);
 
   const actionColumn = [
     {
