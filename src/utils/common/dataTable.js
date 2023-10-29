@@ -143,3 +143,71 @@ export const siteColumns = [
     width: 130,
   }
 ]
+
+export const taskColumns = [
+  { field: "_id", headerName: "ID", width: 180 },
+  {
+    field: "taskName",
+    headerName: "Task Name",
+    description: "This column has a value getter and is not sortable.",
+    sortable: true,
+    width: 130,
+  },
+  {
+    field: "taskDescription",
+    headerName: "Task Description",
+    description: "This column has a value getter and is not sortable.",
+    sortable: true,
+    width: 130,
+  },
+  {
+    field: "taskStatus",
+    headerName: "Task Status",
+    description: "This column has a value getter and is not sortable.",
+    sortable: true,
+    width: 130,
+  },
+  {
+    field: "taskDueDate",
+    headerName: "Task Due Date",
+    description: "This column has a value getter and is not sortable.",
+    sortable: true,
+    width: 130,
+  },
+  {
+    field: "taskStartDate",
+    headerName: "Start Date",
+    description: "This column has a value getter and is not sortable.",
+    sortable: true,
+    width: 130,
+  },
+
+  {
+    field: "taskEndDate",
+    headerName: "End Date",
+    description: "This column has a value getter and is not sortable.",
+    sortable: true,
+    width: 130,
+  },
+  {
+    field: "assignedTo",
+    headerName: "Assigned To",
+    description: "This column has a value getter and is not sortable.",
+    sortable: true,
+    width: 130,
+  },
+  // {
+  //   field: "comments",
+  //   headerName: "Comments",
+  //   description: "This column has a value getter and is not sortable.",
+  //   sortable: true,
+  //   width: 130,
+  // },
+  {
+    field: "taskSpan",
+    headerName: "Task Span",
+    description: "This column has a value getter and is not sortable.",
+    sortable: true,
+    width: 130,
+  },
+]
